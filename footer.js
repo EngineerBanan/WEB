@@ -12,7 +12,7 @@ function makeMagasin(tab){
 	};
 }
 
-function afficherFooter(){
+function afficherFooter(tab){
     var footerjs = document.getElementById("footerjs");
     footerjs.innerHTML = '<div class=\"Contact\"><div><p>Magasin Teplan</p><p>8 rue de la Graine</p><p>51100 REIMS</p><div class=\"tel\"><div class=\"telImg\"><img id=\"Telephone\"src=\"images/telephone.png\"/></div><div class=\"telTexte\"><span class=\"texte\">03.26.12.34.56</span></div></div></div></div><nav class=\"Lien\"><a href=\"TeplanAcceuil.php\"><img class=\"Lien\" src=\"images/planteAcceuil.png\"></a><a href=\"TeplanPlantes.html\"><img class=\"Lien\" src=\"images/plantePlantes.png\"></a><a href=\"TeplanFleurs.html\"><img class=\"Lien\" src=\"images/planteFleurs.png\"></a></nav>';
 }
