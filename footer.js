@@ -1,12 +1,3 @@
-function afficherHoraires(){
-    var MardiSamediOuverture = "10H";
-    var MardiSamediFermeture = "20H";
-    var DimancheOverture = "10H";
-    var DimancheFermeture = "14H";
-    var horaires = document.getElementById("horaires");
-    return horaires.innerHTML = "Notre magasin est ouvert<br>du <span id=\"bold\">mardi au samedi</span><br>de " + MardiSamediOuverture + " à " + MardiSamediFermeture + " <br>et le <span id=\"bold\">dimanche</span> <br>de " + DimancheOverture + " à " + DimancheFermeture + " <br>";
-}
-
 function makeMagasin(tab){
 	//récupère la valeur dans le tableau de recup_magasin()
 	return{
@@ -23,7 +14,7 @@ function makeMagasin(tab){
 
 function afficherFooter(){
     var footerjs = document.getElementById("footerjs");
-    return footerjs.innerHTML = '<div class=\"Contact\"><div><p>Magasin Teplan</p><p>8 rue de la Graine</p><p>51100 REIMS</p><div class=\"tel\"><div class=\"telImg\"><img id=\"Telephone\"src=\"images/telephone.png\"/></div><div class=\"telTexte\"><span class=\"texte\">03.26.12.34.56</span></div></div></div></div><nav class=\"Lien\"><a href=\"TeplanAcceuil.html\"><img class=\"Lien\" src=\"images/planteAcceuil.png\"></a><a href=\"TeplanPlantes.html\"><img class=\"Lien\" src=\"images/plantePlantes.png\"></a><a href=\"TeplanFleurs.html\"><img class=\"Lien\" src=\"images/planteFleurs.png\"></a></nav>';
+    footerjs.innerHTML = '<div class=\"Contact\"><div><p>Magasin Teplan</p><p>8 rue de la Graine</p><p>51100 REIMS</p><div class=\"tel\"><div class=\"telImg\"><img id=\"Telephone\"src=\"images/telephone.png\"/></div><div class=\"telTexte\"><span class=\"texte\">03.26.12.34.56</span></div></div></div></div><nav class=\"Lien\"><a href=\"TeplanAcceuil.php\"><img class=\"Lien\" src=\"images/planteAcceuil.png\"></a><a href=\"TeplanPlantes.html\"><img class=\"Lien\" src=\"images/plantePlantes.png\"></a><a href=\"TeplanFleurs.html\"><img class=\"Lien\" src=\"images/planteFleurs.png\"></a></nav>';
 }
 
 function InfoAlstroemeria() {
@@ -43,4 +34,3 @@ function fermerImage() {
 }
 
 afficherFooter();
-afficherHoraires();
