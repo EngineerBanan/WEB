@@ -1,0 +1,17 @@
+commit cded69f54f046dd992612d2c69e34aea3718fb25
+Author: Gatien <legrand.gatien77@gmail.com>
+Date:   Thu Sep 18 16:46:52 2025 +0200
+
+    petit changement sur le js
+
+commit cc8bf01dbfde77ab3f87b445f83f0466bb11692f
+Author: Gatien <legrand.gatien77@gmail.com>
+Date:   Thu Sep 18 16:18:46 2025 +0200
+
+    enlevé une fonction devenue inutile
+
+commit 8f51b650cfecca4024982549f2116dc6b20ce63d
+Author: Gatien <legrand.gatien77@gmail.com>
+Date:   Thu Sep 18 14:49:28 2025 +0200
+
+    ajout du dossier public_html comme ça je peux changer sur git et sur le localhost

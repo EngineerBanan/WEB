@@ -36,7 +36,7 @@
 
                 /* initiation du let magasin*/
                 $texte =  '<script>let magasin=makeMagasin(["'.$tab[0].'","'.$tab[1].'","'.$tab[2].'","'.$tab[3].'",'.$tab[4].','.$tab[5].','.$tab[6].','.$tab[7].']);</script>';
-                            
+                $texte2 = '<script>let footer=afficherFooter(["'.$tab[0].'","'.$tab[1].'","'.$tab[2].'","'.$tab[3].']);</script>';            
                 //affichage des horaires
                 
 		        $texte.="<div class='cube'>";
@@ -50,7 +50,10 @@
 		        $texte.=  '  </p>';
 		        $texte.="</div>";     
 		        $texte.="<footer id='footerjs'>";
-				$texte.="		<script src='footer.js'></script>";		  
+				$texte.=  '	<script>';
+                $texte.=  '      var footerjs = document.getElementById("footerjs");';
+                $texte.=  '      footerjs.innerHTML = "<div class=\"Contact\"><div><p>" + "Magasin " + magasin.nom[0] + magasin.nom[1].toLowerCase() + "</p><p>" + magasin.adresse + "</p><p>" + magasin.ville + "</p><div class=\"tel\"><div class=\"telImg\"><img id=\"Telephone\"src=\"images/telephone.png\"/></div><div class=\"telTexte\"><span class=\"texte\">" + magasin.tel + "</span></div></div></div></div><nav class=\"Lien\"><a href=\"TeplanAcceuil.php\"><img class=\"Lien\" src=\"images/planteAcceuil.png\"></a><a href=\"TeplanPlantes.html\"><img class=\"Lien\" src=\"images/plantePlantes.png\"></a><a href=\"TeplanFleurs.html\"><img class=\"Lien\" src=\"images/planteFleurs.png\"></a></nav>";';                
+                $texte.=  ' </script>';		  
 				$texte.="</footer> ";
 		        echo $texte;
 	      ?>
