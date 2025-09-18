@@ -1,0 +1,81 @@
+<?php
+
+require("fonctions.inc.php");
+
+//travail 2 : récupération des infos du magasin
+function recup_magasin() {
+	//connexion à la base de donnée
+	
+	$conn=pg_connect('host='.HOST.' dbname=bdteplan user='.USER.' password='.PASS);
+	if(!$conn) {
+		die("Erreur de connexion :".pg_last_error());	
+	}
+	//requête sql
+	$sql="SELECT nom_magasin,ville,adresse,tel,MardiSamediOuverture,MardiSamediFermeture,DimancheOuverture,DimancheFermeture
+		   from informationmagasin
+		   where nom_magasin='TEPLAN';";
+	//envoi de la requête
+	$result=pg_query($conn, $sql);
+	if(!$result) {
+		die("Erreur dans la requête SQL:".pg_last_error());
+	}	
+	//récupération des résultats
+	$tab=pg_fetch_array($result);
+	
+	//suppression de l'espace dédié à $result
+	pg_free_result($result);
+	pg_close($conn);
+	
+	return $tab;
+}
+
+//travail 3 : récupération des fleurs
+function recup_fleurs($couleur) {
+    $conn = pg_connect('host='.HOST.' dbname=bdteplan user='.USER.' password='.PASS);
+    if (!$conn) {
+        die("Erreur de connexion :".pg_last_error());
+    }
+    // on utilise join pour récupérer les fleurs selon la couleur
+    $sql = "
+        SELECT f.*
+        FROM fleurs f
+        JOIN couleur_fleur cf ON f.id_fleur = cf.id_fleur
+        JOIN couleur c ON cf.id_couleur = c.id_couleur
+        WHERE c.nom_couleur = '" . pg_escape_string($couleur) . "';
+    ";
+    $result = pg_query($conn, $sql);
+    if (!$result) {
+        die("Erreur dans la requête SQL:".pg_last_error($conn));
+    }
+    $texte = [];
+    while ($row = pg_fetch_assoc($result)) {
+        $texte[] = $row;
+    }
+    pg_free_result($result);
+    pg_close($conn);
+    return $texte;
+}
+
+//travail 3 : récupération des plantes
+function recup_plantes() {
+    $conn = pg_connect('host='.HOST.' dbname=bdteplan user='.USER.' password='.PASS);
+    if (!$conn) {
+        die("Erreur de connexion :".pg_last_error());
+    }
+    // on récupère toutes les plantes
+    $sql = "SELECT * FROM plantes;";
+    $result = pg_query($conn, $sql);
+    if (!$result) {
+        die("Erreur dans la requête SQL:".pg_last_error($conn));
+    }
+    $texte = [];
+    while ($row = pg_fetch_assoc($result)) {
+        $texte[] = $row;
+    }
+    pg_free_result($result);
+    pg_close($conn);
+    return $texte;
+}
+
+
+?>
