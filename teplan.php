@@ -32,29 +32,27 @@ function recup_magasin() {
 //travail 3 : récupération des fleurs
 function recup_fleurs($couleur) {
     $conn = pg_connect('host='.HOST.' dbname=bdteplan user='.USER.' password='.PASS);
-    if (!$conn) {
-        die("Erreur de connexion :".pg_last_error());
-    }
-    // on utilise join pour récupérer les fleurs selon la couleur
+    if (!$conn) die("Erreur de connexion :".pg_last_error());
+
     $sql = "
-        SELECT f.*
-        FROM fleurs f
-        JOIN couleur_fleur cf ON f.id_fleur = cf.id_fleur
-        JOIN couleur c ON cf.id_couleur = c.id_couleur
-        WHERE c.nom_couleur = '" . pg_escape_string($couleur) . "';
+        SELECT DISTINCT f.*
+        FROM Fleurs f
+        JOIN Couleur_fleur cf ON f.id_fleur = cf.id_fleur
+        JOIN Couleurs c       ON cf.id_couleur = c.id_couleur
+        WHERE c.couleur = $1
+        ORDER BY f.nom_fleur;
     ";
-    $result = pg_query($conn, $sql);
-    if (!$result) {
-        die("Erreur dans la requête SQL:".pg_last_error($conn));
-    }
+    $result = pg_query_params($conn, $sql, [$couleur]);
+    if (!$result) die("Erreur dans la requête SQL:".pg_last_error($conn));
+
     $texte = [];
-    while ($row = pg_fetch_assoc($result)) {
-        $texte[] = $row;
-    }
+    while ($row = pg_fetch_assoc($result)) $texte[] = $row;
+
     pg_free_result($result);
     pg_close($conn);
     return $texte;
 }
+
 
 //travail 3 : récupération des plantes
 function recup_plantes() {
