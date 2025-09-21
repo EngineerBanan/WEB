@@ -76,7 +76,7 @@ function recup_plantes() {
 }
 
 //travail 5: informations sur les fleurs
-function recup_informationFleur_par_nom($nomFleur) {
+function recup_infoFleur($nomFleur) {
     $c = pg_connect('host='.HOST.' dbname=bdteplan user='.USER.' password='.PASS);
     if (!$c) die("Erreur de connexion :".pg_last_error());
     $sql = "SELECT * FROM informationfleur WHERE nom_fleur = $1 LIMIT 1";
@@ -85,6 +85,19 @@ function recup_informationFleur_par_nom($nomFleur) {
     $row = pg_fetch_assoc($r);
     pg_free_result($r); pg_close($c);
     return $row;
+}
+
+//travail 6: récupération des accessoires
+function recup_accessoires() {
+    $c = pg_connect('host='.HOST.' dbname=bdteplan user='.USER.' password='.PASS);
+    if (!$c) die("Erreur de connexion :".pg_last_error());
+    // Vue créée dans ton SQL : ListeAccessoires
+    $r = pg_query($c, 'SELECT nom_accessoire, image_accessoire, info_accessoire, prix_accessoire
+                       FROM "ListeAccessoires" ORDER BY nom_accessoire');
+    if (!$r) die("Erreur SQL :".pg_last_error($c));
+    $out=[]; while($row=pg_fetch_assoc($r)) $out[]=$row;
+    pg_free_result($r); pg_close($c);
+    return $out;
 }
 
 
