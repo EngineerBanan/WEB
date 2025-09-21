@@ -77,27 +77,53 @@ function recup_plantes() {
 
 //travail 5: informations sur les fleurs
 function recup_infoFleur($nomFleur) {
-    $c = pg_connect('host='.HOST.' dbname=bdteplan user='.USER.' password='.PASS);
-    if (!$c) die("Erreur de connexion :".pg_last_error());
+    $conn = pg_connect('host='.HOST.' dbname=bdteplan user='.USER.' password='.PASS);
+    if (!$conn) die("Erreur de connexion :".pg_last_error());
     $sql = "SELECT * FROM informationfleur WHERE nom_fleur = $1 LIMIT 1";
-    $r = pg_query_params($c, $sql, [$nomFleur]);
-    if (!$r) die("Erreur SQL :".pg_last_error($c));
-    $row = pg_fetch_assoc($r);
-    pg_free_result($r); pg_close($c);
+    $result = pg_query_params($conn, $sql, [$nomFleur]);
+    if (!$result) die("Erreur SQL :".pg_last_error($conn));
+    $row = pg_fetch_assoc($result);
+    pg_free_result($result); pg_close($conn);
     return $row;
 }
 
 //travail 6: récupération des accessoires
 function recup_accessoires() {
-    $c = pg_connect('host='.HOST.' dbname=bdteplan user='.USER.' password='.PASS);
-    if (!$c) die("Erreur de connexion :".pg_last_error());
+    $conn = pg_connect('host='.HOST.' dbname=bdteplan user='.USER.' password='.PASS);
+    if (!$conn) die("Erreur de connexion :".pg_last_error());
     // Vue créée dans ton SQL : ListeAccessoires
-    $r = pg_query($c, 'SELECT nom_accessoire, image_accessoire, info_accessoire, prix_accessoire
+    $result = pg_query($conn, 'SELECT nom_accessoire, image_accessoire, info_accessoire, prix_accessoire
                        FROM "ListeAccessoires" ORDER BY nom_accessoire');
-    if (!$r) die("Erreur SQL :".pg_last_error($c));
-    $out=[]; while($row=pg_fetch_assoc($r)) $out[]=$row;
-    pg_free_result($r); pg_close($c);
+    if (!$result) die("Erreur SQL :".pg_last_error($conn));
+    $out=[]; while($row=pg_fetch_assoc($result)) $out[]=$row;
+    pg_free_result($result); pg_close($conn);
     return $out;
+}
+
+//travail 7: récupération du nombre de produits
+function recup_nombreProduits($nom='TEPLAN') {
+    $conn = pg_connect('host='.HOST.' dbname=bdteplan user='.USER.' password='.PASS);
+    if (!$conn) die("Erreur de connexion :".pg_last_error());
+
+    $result = pg_query_params($conn,
+        'SELECT * FROM nombredeproduit WHERE nom_magasin = $1',
+        [$nom]
+    );
+    if (!$result) die("Erreur SQL :".pg_last_error($conn));
+
+    $row = pg_fetch_assoc($result);
+    pg_free_result($result); pg_close($conn);
+    if (!$row) return null;
+
+    return [
+      'nb_fleurs'       => $row['Nombre de fleurs'] ?? 0,
+      'min_prix_fleur'  => $row['prix minimum Fleurs'] ?? null,
+      'max_prix_fleur'  => $row['prix maximum Fleurs'] ?? null,
+      'nb_plantes'      => $row['Nombre de plantes'] ?? 0,
+      'min_prix_plante' => $row['prix minimum Plantes'] ?? null,
+      'max_prix_plante' => $row['prix maximum Plantes'] ?? null,
+      'nb_accessoires'  => $row["Nombre d'accessoires"] ?? 0,
+    ];
 }
 
 

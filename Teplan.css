@@ -329,3 +329,9 @@ span[id="bold"]{
     text-align: center;
     border-radius: 5px;
 }
+
+.stats{
+  margin: 1rem 3%;
+  padding: .5rem 0;
+  font-size: 1rem;
+}

@@ -25,14 +25,30 @@
             téléphone ! <img src="images/telephone.png" class="ImageT" alt="telephone"></p>
 
             <p>Au plaisir de vous voir !</p>
-            
+            <?php
+                require_once ("teplan.php");
+                $np = recup_nombreProduits();
+                if ($np):
+            ?>
+            <div id="stats">
+                Aujourd'hui le magasin TEPLAN vous propose
+                <strong><?= (int)$np['nb_fleurs'] ?></strong> fleurs
+                (de <?= $np['min_prix_fleur']!==null ? number_format($np['min_prix_fleur'],0,',',' ').' €' : '—' ?>
+                à <?= $np['max_prix_fleur']!==null ? number_format($np['max_prix_fleur'],0,',',' ').' €' : '—' ?>)
+                et <strong><?= (int)$np['nb_plantes'] ?></strong> plantes
+                (de <?= $np['min_prix_plante']!==null ? number_format($np['min_prix_plante'],0,',',' ').' €' : '—' ?>
+                à <?= $np['max_prix_plante']!==null ? number_format($np['max_prix_plante'],0,',',' ').' €' : '—' ?>).
+                N'oubliez pas de regarder les <?= (int)$np['nb_accessoires'] ?> accessoires.
+            </div>
+            <?php endif; ?>
         </div>
+        
         
           <?php       
           //travail n°2 : affichage des horaires et du footer avec données de la base de données					  
                 /* lecture du magasin depuis la bd*/
                 require_once("teplan.php");
-                $tab=recup_magasin();
+                $tab = recup_magasin();
 
                 /* initiation du let magasin*/
                 $texte =  '<script>let magasin=makeMagasin(["'.$tab[0].'","'.$tab[1].'","'.$tab[2].'","'.$tab[3].'",'.$tab[4].','.$tab[5].','.$tab[6].','.$tab[7].']);</script>';
