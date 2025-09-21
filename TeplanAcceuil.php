@@ -68,7 +68,7 @@
 		        $texte.="<footer id='footerjs'>";
 				$texte.=  '	<script>';
                 $texte.=  '      var footerjs = document.getElementById("footerjs");';
-                $texte.=  '      footerjs.innerHTML = "<div class=\"Contact\"><div><p>" + "Magasin " + magasin.nom.charAt(0).toUpperCase() + magasin.nom.slice(1).toLowerCase() + "</p><p>" + magasin.adresse + "</p><p>" + magasin.ville + "</p><div class=\"tel\"><div class=\"telImg\"><img id=\"Telephone\"src=\"images/telephone.png\"/></div><div class=\"telTexte\"><span class=\"texte\">" + magasin.tel + "</span></div></div></div></div><nav class=\"Lien\"><a href=\"TeplanAcceuil.php\"><img class=\"Lien\" src=\"images/planteAcceuil.png\"></a><a href=\"TeplanPlantes.html\"><img class=\"Lien\" src=\"images/plantePlantes.png\"></a><a href=\"TeplanFleurs.html\"><img class=\"Lien\" src=\"images/planteFleurs.png\"></a></nav>";';                
+                $texte.=  '      footerjs.innerHTML = "<div class=\"Contact\"><div><p>" + "Magasin " + magasin.nom.charAt(0).toUpperCase() + magasin.nom.slice(1).toLowerCase() + "</p><p>" + magasin.adresse + "</p><p>" + magasin.ville + "</p><div class=\"tel\"><div class=\"telImg\"><img id=\"Telephone\"src=\"images/telephone.png\"/></div><div class=\"telTexte\"><span class=\"texte\">" + magasin.tel + "</span></div></div></div></div><nav class=\"Lien\"><a href=\"TeplanAcceuil.php\"><img class=\"Lien\" src=\"images/planteAcceuil.png\"></a><a href=\"TeplanPlantes.html\"><img class=\"Lien\" src=\"images/plantePlantes.png\"></a><a href=\"teplanFleurs.php\"><img class=\"Lien\" src=\"images/planteFleurs.png\"></a></nav>";';                
                 $texte.=  ' </script>';		  
 				$texte.="</footer> ";
 		        echo $texte;

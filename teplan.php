@@ -126,6 +126,32 @@ function recup_nombreProduits($nom='TEPLAN') {
     ];
 }
 
+//travail 9: récupération des couleurs
+function recup_couleurs(){
+  $conn = pg_connect('host='.HOST.' dbname=bdteplan user='.USER.' password='.PASS);
+  if (!$conn) die("Erreur de connexion :".pg_last_error());
+  $result = pg_query($conn, "SELECT couleur FROM Couleurs ORDER BY couleur");
+  if (!$result) die("Erreur SQL :".pg_last_error($conn));
+  $out=[]; while($row=pg_fetch_assoc($result)) $out[]=$row['couleur'];
+  pg_free_result($result); pg_close($conn); return $out;
+}
+
+function recup_fleurs_par_couleur($couleur){
+  $conn = pg_connect('host='.HOST.' dbname=bdteplan user='.USER.' password='.PASS);
+  if (!$conn) die("Erreur de connexion :".pg_last_error());
+  $sql = "SELECT DISTINCT f.nom_fleur, f.image_fleur
+          FROM Fleurs f
+          JOIN Couleur_fleur cf ON f.id_fleur=cf.id_fleur
+          JOIN Couleurs c2      ON c2.id_couleur=cf.id_couleur
+          WHERE c2.couleur = $1
+          ORDER BY f.nom_fleur";
+  $result = pg_query_params($conn,$sql,[$couleur]);
+  if (!$result) die("Erreur SQL :".pg_last_error($conn));
+  $out=[]; while($row=pg_fetch_assoc($result)) $out[]=$row;
+  pg_free_result($result); pg_close($conn); return $out;
+}
+
+
 
 
 ?>
