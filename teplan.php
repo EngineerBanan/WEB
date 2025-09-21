@@ -75,5 +75,18 @@ function recup_plantes() {
     return $texte;
 }
 
+//travail 5: informations sur les fleurs
+function recup_informationFleur_par_nom($nomFleur) {
+    $c = pg_connect('host='.HOST.' dbname=bdteplan user='.USER.' password='.PASS);
+    if (!$c) die("Erreur de connexion :".pg_last_error());
+    $sql = "SELECT * FROM informationfleur WHERE nom_fleur = $1 LIMIT 1";
+    $r = pg_query_params($c, $sql, [$nomFleur]);
+    if (!$r) die("Erreur SQL :".pg_last_error($c));
+    $row = pg_fetch_assoc($r);
+    pg_free_result($r); pg_close($c);
+    return $row;
+}
+
+
 
 ?>
