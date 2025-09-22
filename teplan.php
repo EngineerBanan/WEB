@@ -150,8 +150,4 @@ function recup_fleurs_par_couleur($couleur){
   $out=[]; while($row=pg_fetch_assoc($result)) $out[]=$row;
   pg_free_result($result); pg_close($conn); return $out;
 }
-
-
-
-
 ?>
