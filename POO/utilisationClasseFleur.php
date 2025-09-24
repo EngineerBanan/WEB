@@ -14,6 +14,20 @@ $fleur->getImage("lys_asiatique.jpg");
 $fleur->getTemperature("15°C");
 var_dump($fleur);
 
+$fleur1 = new Fleur();
+$fleur1->getNom("Alstroemeria jaune");
+$fleur1->getPrix(4.5);
+$fleur1->getImage("alstroemeria_jaune.png");
+$fleur1->getTemperature("18°C");
+var_dump($fleur1);
+
+$fleur2 = new Fleur(); 
+$fleur2->getNom("Alstroemeria violet");
+$fleur2->getPrix(4.5);
+$fleur2->getImage("alstroemeria_violet.jpg");
+$fleur2->getTemperature("18°C");
+var_dump($fleur2);
+
 $plante = new Plante();
 $plante->nom = "Bambou";
 $plante->prix = 11;
