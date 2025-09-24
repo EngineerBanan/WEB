@@ -51,8 +51,7 @@
                 $tab = recup_magasin();
 
                 /* initiation du let magasin*/
-                $texte =  '<script>let magasin=makeMagasin(["'.$tab[0].'","'.$tab[1].'","'.$tab[2].'","'.$tab[3].'",'.$tab[4].','.$tab[5].','.$tab[6].','.$tab[7].']);</script>';
-                $texte2 = '<script>let footer=afficherFooter(["'.$tab[0].'","'.$tab[1].'","'.$tab[2].'","'.$tab[3].']);</script>';            
+                $texte =  '<script>let magasin=makeMagasin(["'.$tab[0].'","'.$tab[1].'","'.$tab[2].'","'.$tab[3].'",'.$tab[4].','.$tab[5].','.$tab[6].','.$tab[7].']);</script>';       
                 //affichage des horaires
                 
 		        $texte.="<div class='cube'>";

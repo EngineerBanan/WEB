@@ -1,9 +1,8 @@
 <?php
-class Fleur {
+class Plante {
     public $nom;
     public $prix;
-    public $image;
     public $temperature;
+    public $image;
 }
-
 ?>

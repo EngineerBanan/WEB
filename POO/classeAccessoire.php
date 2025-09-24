@@ -1,9 +1,9 @@
 <?php
-class Fleur {
+class Accessoire {
     public $nom;
     public $prix;
-    public $image;
     public $temperature;
+    public $image;
+    public $image_MES;
 }
-
 ?>

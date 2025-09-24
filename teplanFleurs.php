@@ -37,6 +37,7 @@
   <meta charset="UTF-8">
   <title>TEPLAN</title>
   <link rel="stylesheet" href="Teplan.css">
+  <script src="footer.js"></script>
 </head>
 <body>
   <div id="MainPage3">
@@ -60,7 +61,19 @@
       </form>
     </div>
   </div>
-  <footer id="footer"></footer>
-  <script src="footer.js"></script>
+  <?php
+    require_once("teplan.php");
+    $tab = recup_magasin();
+
+    $texte = '<script>let magasin=makeMagasin(["'.$tab[0].'","'.$tab[1].'","'.$tab[2].'","'.$tab[3].'",'.$tab[4].','.$tab[5].','.$tab[6].','.$tab[7].']);</script>';
+
+    $texte.="<footer id='footerjs'>";
+		$texte.=  '	<script>';
+    $texte.=  '      var footerjs = document.getElementById("footerjs");';
+    $texte.=  '      footerjs.innerHTML = "<div class=\"Contact\"><div><p>" + "Magasin " + magasin.nom.charAt(0).toUpperCase() + magasin.nom.slice(1).toLowerCase() + "</p><p>" + magasin.adresse + "</p><p>" + magasin.ville + "</p><div class=\"tel\"><div class=\"telImg\"><img id=\"Telephone\"src=\"images/telephone.png\"/></div><div class=\"telTexte\"><span class=\"texte\">" + magasin.tel + "</span></div></div></div></div><nav class=\"Lien\"><a href=\"TeplanAcceuil.php\"><img class=\"Lien\" src=\"images/planteAcceuil.png\"></a><a href=\"TeplanPlantes.html\"><img class=\"Lien\" src=\"images/plantePlantes.png\"></a><a href=\"teplanFleurs.php\"><img class=\"Lien\" src=\"images/planteFleurs.png\"></a></nav>";';                
+    $texte.=  ' </script>';		  
+		$texte.="</footer> ";
+		echo $texte;
+  ?>
 </body>
 </html>
