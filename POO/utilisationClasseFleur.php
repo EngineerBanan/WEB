@@ -8,10 +8,10 @@ require_once("classeCouleur.php");
 require_once("classeMagasin.php");
 
 $fleur = new Fleur();
-$fleur->nom = "Lys";
-$fleur->prix = 5;
-$fleur->image = "lys_asiatique.jpg";
-$fleur->temperature = "15°C";
+$fleur->getNom("Lys");
+$fleur->getPrix(5);
+$fleur->getImage("lys_asiatique.jpg");
+$fleur->getTemperature("15°C");
 var_dump($fleur);
 
 $plante = new Plante();
@@ -52,8 +52,8 @@ $magasin->horaires_ouverture = "10h-20h";
 var_dump($magasin);
 
 echo '<hr>';
-echo '<img src="' . $fleur->image . '" alt="' . $fleur->nom . '"><br>';
-echo 'Le/la ' . $fleur->nom . " coûte " . $fleur->prix . " €.<br>";
+echo '<img src="' . $fleur->afficheImage() . '" alt="' . $fleur->afficheNom() . '"><br>';
+echo 'Le/la ' . $fleur->afficheNom() . " coûte " . $fleur->affichePrix() . " €.<br>";
 
 echo '<img src="' . $plante->image . '" alt="' . $plante->nom . '"><br>';
 echo 'Ce/cette ' . $plante->nom . " coûte " . $plante->prix . " €.<br>";
