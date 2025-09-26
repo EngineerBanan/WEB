@@ -60,8 +60,20 @@ $ensoleillement->libelle = "Plein soleil";
 var_dump($ensoleillement);
 
 $couleur = new Couleur();
-$couleur->couleur = "Rouge";
+$couleur->getCouleur("Rouge");
 var_dump($couleur);
+
+$couleur1 = new Couleur();
+$couleur1->getCouleur("Jaune");
+var_dump($couleur1);
+
+$couleur2 = new Couleur();
+$couleur2->getCouleur("Violet");
+var_dump($couleur2);
+
+$couleur3 = new Couleur();
+$couleur3->getCouleur("Noir");
+var_dump($couleur3);
 
 $magasin = new Magasin();
 $magasin->nom = "Magasin Teplan";
@@ -85,4 +97,8 @@ echo 'Le/la ' . $accessoire->nom . " coûte " . $accessoire->prix . " €.<br>";
 
 echo '<br>Origine : ' . $origine1->afficheNom() . '<br>';
 echo 'Origine : ' . $origine2->afficheNom() . '<br>';
+
+echo '<br>Couleur : ' . $couleur1->afficheCouleur() . '<br>';
+echo 'Couleur : ' . $couleur2->afficheCouleur() . '<br>';
+echo 'Couleur : ' . $couleur3->afficheCouleur() . '<br>';
 ?>
