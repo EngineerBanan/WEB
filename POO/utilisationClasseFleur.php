@@ -28,6 +28,14 @@ $fleur2->getImage("alstroemeria_violet.jpg");
 $fleur2->getTemperature("18°C");
 var_dump($fleur2);
 
+$origine1 = new Origine();
+$origine1->getNom("Chili");
+var_dump($origine1);
+
+$origine2 = new Origine();
+$origine2->getNom("Pérou");
+var_dump($origine2);
+
 $plante = new Plante();
 $plante->nom = "Bambou";
 $plante->prix = 11;
@@ -44,7 +52,7 @@ $accessoire->image_MES = "petite_pelle_MES.png";
 var_dump($accessoire);
 
 $origine = new Origine();
-$origine->nom = "France";
+$origine->getNom("France");
 var_dump($origine);
 
 $ensoleillement = new Ensoleillement();
@@ -74,4 +82,7 @@ echo 'Ce/cette ' . $plante->nom . " coûte " . $plante->prix . " €.<br>";
 
 echo '<img src="' . $accessoire->image . '" alt="' . $accessoire->nom . '"><br>';
 echo 'Le/la ' . $accessoire->nom . " coûte " . $accessoire->prix . " €.<br>";
+
+echo '<br>Origine : ' . $origine1->afficheNom() . '<br>';
+echo 'Origine : ' . $origine2->afficheNom() . '<br>';
 ?>
